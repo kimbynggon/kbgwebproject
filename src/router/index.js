@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import CalculatingView from '../views/CalculatingView.vue'
+import TestView from '../views/TestView.vue'
+import VtestView from '../views/VtestView.vue'
+import PropsCompoent from '@/views/PropsCompoent.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,6 +20,28 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: TestView,
+      children: [
+        {
+          path: 'v-test',
+          name: 'test-v-view',
+          component: VtestView,
+        },
+      ],
+    },
+    {
+      path: '/v-props',
+      name: 'v-props',
+      component: PropsCompoent,
+    },
+    {
+      path: '/calculating',
+      name: 'calculating machine',
+      component: CalculatingView,
     },
   ],
 })
